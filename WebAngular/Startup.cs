@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
+using WebAngular.Models;
 
 namespace WebAngular
 {
@@ -10,6 +12,11 @@ namespace WebAngular
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            string connectionString = "Server=(localdb)\\mssqllocaldb;Database=productsdb;Trusted_Connection=True;";
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddControllers();
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
@@ -27,6 +34,13 @@ namespace WebAngular
             {
                 app.UseSpaStaticFiles();
             }
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.UseSpa(spa =>
             {
