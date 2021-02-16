@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="WebAngular\**" />
-    <Content Remove="WebAngular\**" />
-    <EmbeddedResource Remove="WebAngular\**" />
-    <None Remove="WebAngular\**" />
-    <TypeScriptCompile Remove="WebAngular\**" />
+    <None Remove="ClientApp\src\app\app.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +14,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\app.component.ts" />
   </ItemGroup>
 
 </Project>
